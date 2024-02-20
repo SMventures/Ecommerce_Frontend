@@ -155,7 +155,7 @@ node_modules/.cache/
 .idea/
 *.suo
 *.ntvs*
-*.njsproj
+*.njsprojgit branch -a
 *.sln
 *.sw*
 .DS_Store

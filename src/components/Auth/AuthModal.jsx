@@ -3,6 +3,10 @@ import { Box, Modal } from '@mui/material';
 import Signup from '../Auth/Signup'; // Import your Signup component
 import Login from '../Auth/Login'
 import { useLocation, useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+
+
 
 const style = {
     position: "absolute",
@@ -18,6 +22,17 @@ const style = {
 
 const AuthModal = ({ handleClose, open }) => {
     const location = useLocation();
+    const navigate=useNavigate()
+
+    const { auth } = useSelector((store) => store);
+    const jwt = localStorage.getItem("jwt");
+    useEffect(() => {
+        if (auth.user){
+           handleClose();
+          
+           }
+          }
+      , [auth.user]);
 
     return (
         <div>
