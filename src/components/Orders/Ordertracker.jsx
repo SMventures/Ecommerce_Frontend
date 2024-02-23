@@ -13,7 +13,7 @@ const steps = [
 
 const Ordertracker = ({ activeStep }) => {
   return (
-    <div className='w-full'>
+    <div className='mt-8 w-full'>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => (
           <Step key={index}>

@@ -65,7 +65,7 @@ const getUserFailure = error => ({ type: GET_USER_FAILURE, payload: error });
 export const getUser = (jwt) => async (dispatch) => {
     dispatch({type:GET_USER_REQUEST });
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/users/profile`,{
+        const response = await axios.get(`${API_BASE_URL}/api/users/profile`,{
             headers:{
                 "Authorization":`Bearer ${jwt}`
             }

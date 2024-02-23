@@ -12,13 +12,13 @@ const orderStatus=[
 ]
 const Order = () => {
   return (
-    <div className='px:5 lg:px-20'>
+    <div className='px:5 mt-10 my-4 lg:px-20'>
       <Grid container sx={{justifyContent:"space-between"}}>
 
         <Grid item xs={2.5} >
-            <div className='h-auto shadow-lg bg-white p-5 sticky top-5'>
+            <div className=' mt-19 my-10 shadow-lg bg-white p-5 sticky top-5'>
                 <h1 className='font-bold text-lg'>Filter</h1>
-                <div className='space-y-4 mt-10'>
+                <div className='space-y-4 mt-6'>
                     <h1 className='font-semibold'>ORDER STATUS</h1>
                    {orderStatus.map((option)=> <div className='flex items-center'><input defaultValue={Option.value}type="checkbox" className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500'/>
                     <label className='ml-3 text-sm text-gray-600'htmlFor={option.value}>{option.label}</label>

@@ -10,10 +10,10 @@ import Header from '../components/Header/header';
 import Home from '../components/Home/home';
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 import Product from "../components/Product/Product";
-//import RateProduct from "../Components/ReviewProduct/RateProduct";
+// import RateProduct from "../Components/ReviewProduct/RateProduct";
+// import PaymentSuccess from "../customer/Components/paymentSuccess/PaymentSuccess";
+// import NotFoundPage from './404'
 
-import { Box } from "@mui/material";
-import { Login } from '@mui/icons-material';
 import NotFound from '../components/NotFound';
 
 
@@ -33,11 +33,14 @@ const CustomerRouters = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        {/* <Route path="/account/rate/:productId" element={<RateProduct />}></Route> */}
 
         <Route path="/:category/" element={<Product />} />
         <Route path="/:category/:productId" element={<ProductDetails />} />
         <Route path="/account/order" element={<Order />} />
         <Route path="/account/order/:orderId" element={<OrderDetail />} />
+        {/* <Route path="/payment/:orderId" element={<PaymentSuccess />}></Route> */}
+
         <Route path="/404" element={<NotFound/>}/>
 
         {/* <Route path="/account/rate/:productId" element={<RateProduct />} /> */}

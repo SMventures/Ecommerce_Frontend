@@ -10,7 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { logout } from "../../State/Auth/Action";
-
 import { deepPurple } from '@mui/material/colors';
 
 const Wrapper = styled(Box)`
@@ -66,28 +65,25 @@ const CustomButtons = () => {
         setAnchorEl(null);
     };
 
-   
-  const handleLogout = () => {
-    dispatch(logout());
-    handleCloseUserMenu();
-
-  };
+    const handleLogout = () => {
+        dispatch(logout());
+        handleCloseUserMenu()
+        navigate("/");
+    };
 
     const handleUserClick = (event) => {
         setAnchorEl(event.currentTarget);
-
-    };    
-    const handleMyOrderClick = () => {
-        // Navigate the user to the "/account/order" route
-        navigate("/account/order");
     };
 
+    const handleMyOrderClick = () => {
+        navigate("/account/order");
+    };
 
     useEffect(() => {
         if (jwt) {
             dispatch(getUser(jwt));
         }
-    }, [jwt,auth.jwt]);
+    }, [jwt, auth.jwt]);
 
     useEffect(() => {
         if (auth.user) {
@@ -108,47 +104,42 @@ const CustomButtons = () => {
 
     return (
         <Wrapper>
-            <LoginButton variant="contained" onClick={handleOpen}>
-                {auth.user ? (
-                    <>
-                        <Avatar
-                            onClick={handleUserClick}
-                            sx={{
-                                bgcolor: deepPurple[500],
-                                color: "white",
-                                cursor: "pointer",
-                                marginRight: "10px"
-                            }}
-                        >
-                            {auth.user.firstName[0].toUpperCase()}
-                        </Avatar>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleCloseUserMenu}
-                            MenuListProps={{
-                                "aria-labelledby": "basic-button",
-                            }}
-                        >
-                            <MenuItem onClick={handleCloseUserMenu}>
-                                Profile
-                            </MenuItem>
-                            <MenuItem onClick={handleMyOrderClick}>
-                                My Orders
-                            </MenuItem>
-                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                        </Menu>
-                    </>
-                ) : (
-                    <Button
-                        onClick={handleOpen}
-                        className="text-sm font-medium text-gray-700 hover:text-gray-800"
+            {auth.user ? (
+                <>
+                    <Avatar
+                        onClick={handleUserClick}
+                        sx={{
+                            bgcolor: deepPurple[500],
+                            color: "white",
+                            cursor: "pointer",
+                            marginRight: "10px"
+                        }}
                     >
-                        Signin
-                    </Button>
-                )}
-            </LoginButton>
+                        {auth.user.firstName[0].toUpperCase()}
+                    </Avatar>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleCloseUserMenu}
+                        MenuListProps={{
+                            "aria-labelledby": "basic-button",
+                        }}
+                    >
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleMyOrderClick}>
+                            My Orders
+                        </MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    </Menu>
+                </>
+            ) : (
+                <LoginButton variant="contained" onClick={handleOpen}>
+                    Signin
+                </LoginButton>
+            )}
             <Container>
                 <IconWrapper onClick={handleWishlistClick}>
                     <FavoriteIcon />
