@@ -9,7 +9,7 @@ import { blue, deepPurple } from '@mui/material/colors';
 const OrderDetail = () => {
   return (
     <div className='px:5 lg:px-20'>
-        <h1 className='font-bold text-xl py-7'>Dilevery Address</h1>
+        <h1 className='font-bold text-xl py-7'>Delevery Address</h1>
         <div> <AddressCard/></div>
         <div className='py-20'>
             <Ordertracker activeStep={3}/>

@@ -7,7 +7,7 @@ const AdminRouters = () => {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Admin />} /> {/* Use Route component with element prop */}
+                <Route path="/*" element={<Admin />} /> {/* Use Route component with element prop */}
             </Routes>
         </div>
     );
