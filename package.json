@@ -23,6 +23,7 @@
     "axios": "^1.6.7",
     "mdi-material-ui": "^7.8.0",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.4",

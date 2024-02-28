@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, findProducts } from "../../../State/customers/product/Action";
+import { deleteProduct, findProducts } from "../../../Redux/customers/product/Action";
 import {
   Avatar,
   Box,

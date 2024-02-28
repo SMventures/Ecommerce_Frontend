@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'; // Import Routes and Route from react-router-dom
 
-import Admin from '../Admin/components/Admin'; // Import the Admin component
+import Admin from '../Admin/Admin'; // Import the Admin component
 
 const AdminRouters = () => {
     return (

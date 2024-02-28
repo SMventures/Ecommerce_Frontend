@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, login } from "../../State/Auth/Action";
+import { getUser, login } from "../../Redux/Auth/Action";
 
 const LoginForm = () => {
   const navigate = useNavigate();

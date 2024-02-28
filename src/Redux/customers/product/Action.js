@@ -84,7 +84,7 @@ export const createProduct = (product) => async (dispatch) => {
 
     const { data } = await api.post(
       `${API_BASE_URL}/api/admin/products/`,
-      product.data
+      product
     );
 
     dispatch({

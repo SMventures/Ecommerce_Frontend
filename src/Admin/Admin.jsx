@@ -16,15 +16,15 @@ import { deepPurple } from "@mui/material/colors";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AdminDashboard from './Dashboard';
-import ProductsTable from './Products/ProductsTable';
-import  OrdersTable from './OrdersTable';
-import CreateProductForm from './AddProduct/CreateProductForm';
-import CustomersTable from './customers/CustomersTable';
-import UpdateProductForm from './UpdateProductForm';
+import AdminDashboard from './View/Dashboard';
+import ProductsTable from './components/Products/ProductsTable';
+import  OrdersTable from './components/Orders/OrdersTable';
+import CreateProductForm from './components/AddProduct/CreateProductForm';
+import CustomersTable from './Tables/CustomersTable';
+import UpdateProductForm from './components/UpdateProduct/UpdateProductForm';
 // import { AccountCircle } from '@mui/icons-material';
 // import { ThemeProvider } from "@emotion/react";
-import { logout } from "../../State/Auth/Action";
+import { logout } from "../Redux/Auth/Action";
 
 
 import { useEffect } from "react";
@@ -157,7 +157,7 @@ const Admin = () =>{
             <Route path="/Admin/product/create" element={<CreateProductForm/>}></Route>
             <Route path="/product/update/:productId" element={<UpdateProductForm/>}></Route>
             <Route path="/Admin/products" element={<ProductsTable/>}></Route>
-            <Route path="/orders" element={<OrdersTable/>}></Route>
+            <Route path="/Admin/orders" element={<OrdersTable/>}></Route>
             <Route path="/customers" element={<CustomersTable/>}></Route>
 
           </Routes>

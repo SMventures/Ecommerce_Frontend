@@ -3,13 +3,13 @@ import { Box, Button, styled } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../State/Auth/Action";
+import { getUser } from "../../Redux/Auth/Action";
 import { useLocation, useNavigate } from 'react-router-dom';
 import AuthModal from '../Auth/AuthModal';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { logout } from "../../State/Auth/Action";
+import { logout } from "../../Redux/Auth/Action";
 import { deepPurple } from '@mui/material/colors';
 
 const Wrapper = styled(Box)`

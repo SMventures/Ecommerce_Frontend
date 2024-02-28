@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, register } from '../../State/Auth/Action';
+import { getUser, register } from '../../Redux/Auth/Action';
 import { Button } from '@mui/material';
 
 const Signup = () => {
