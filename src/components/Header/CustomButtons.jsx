@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, styled } from "@mui/material";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useNavigate } from 'react-router-dom'; // Import navigate function
-import AuthModal from '../Auth/AuthModal'; // Import your AuthModal component
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../State/Auth/Action";
+import { useLocation, useNavigate } from 'react-router-dom';
+import AuthModal from '../Auth/AuthModal';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { logout } from "../../State/Auth/Action";
+import { deepPurple } from '@mui/material/colors';
 
 const Wrapper = styled(Box)`
     display: flex;
     margin: 0 3% 0 auto;
-    align-items: center; /* Align items vertically */
+    align-items: center;
 `;
 
 const Container = styled(Box)`
     display: flex;
     font-size: 10px;
-    margin-left: 10%; /* Push icons to the right */
-    align-items: end; /* Align items vertically */
+    margin-left: 10%;
+    align-items: end;
 `;
 
 const LoginButton = styled(Button)`
@@ -27,43 +34,113 @@ const LoginButton = styled(Button)`
     box-shadow: none;
     font-weight: 600;
     height: 30px;
+    display: flex;
+    align-items: center;
 `;
 
 const IconWrapper = styled(Box)`
-    margin-right: 10px; /* Add space between icons */
-    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+    margin-right: 10px;
+    cursor: pointer;
 `;
 
 const CustomButtons = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const { auth } = useSelector((store) => store);
+    const jwt = localStorage.getItem("jwt");
     const [openAuthModal, setOpenAuthModal] = useState(false);
+
+    const handleOpen = () => {
+        setOpenAuthModal(true);
+    };
 
     const handleClose = () => {
         setOpenAuthModal(false);
     };
-    const handleOpen = () =>{
-        setOpenAuthModal(true);
 
-    }
+    const handleCloseUserMenu = () => {
+        setAnchorEl(null);
+    };
 
-    // Define functions to handle icon clicks and navigate to respective routes
+    const handleLogout = () => {
+        dispatch(logout());
+        handleCloseUserMenu()
+        navigate("/");
+    };
+
+    const handleUserClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMyOrderClick = () => {
+        navigate("/account/order");
+    };
+
+    useEffect(() => {
+        if (jwt) {
+            dispatch(getUser(jwt));
+        }
+    }, [jwt, auth.jwt]);
+
+    useEffect(() => {
+        if (auth.user) {
+            handleClose();
+        }
+        if ((location.pathname === "/login" || location.pathname === "/Signup")) {
+            navigate(-1);
+        }
+    }, [auth.user]);
+
     const handleWishlistClick = () => {
-        navigate("/wishlist"); // Navigate to /wishlist route
+        navigate("/wishlist");
     };
 
     const handleCartClick = () => {
-        navigate("/cart"); // Navigate to /cart route
-    };
-
-    const handleLoginClick = () => {
-        setOpenAuthModal(true);
+        navigate("/cart");
     };
 
     return (
         <Wrapper>
-            <LoginButton variant="contained" onClick={handleLoginClick}>SignIn</LoginButton>
+            {auth.user ? (
+                <>
+                    <Avatar
+                        onClick={handleUserClick}
+                        sx={{
+                            bgcolor: deepPurple[500],
+                            color: "white",
+                            cursor: "pointer",
+                            marginRight: "10px"
+                        }}
+                    >
+                        {auth.user.firstName[0].toUpperCase()}
+                    </Avatar>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleCloseUserMenu}
+                        MenuListProps={{
+                            "aria-labelledby": "basic-button",
+                        }}
+                    >
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleMyOrderClick}>
+                            My Orders
+                        </MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                    </Menu>
+                </>
+            ) : (
+                <LoginButton variant="contained" onClick={handleOpen}>
+                    Signin
+                </LoginButton>
+            )}
             <Container>
-                {/* Attach onClick event handlers to IconWrappers */}
                 <IconWrapper onClick={handleWishlistClick}>
                     <FavoriteIcon />
                 </IconWrapper>
@@ -73,7 +150,7 @@ const CustomButtons = () => {
             </Container>
             <AuthModal handleClose={handleClose} open={openAuthModal} />
         </Wrapper>
-    ); 
+    );
 }
 
 export default CustomButtons;

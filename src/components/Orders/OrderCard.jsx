@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const OrderCard = () => {
   const navigate=useNavigate();
   return (
-    <div className='p-5 shadow-sm shadow-black hover:shadow-2xl'>
+    <div className='p-5 my-8 py -8 shadow-sm shadow-black hover:shadow-2xl'>
       <Grid container spacing={2} sx={{justifyContent:"space-between"}}>
         <Grid item xs={6}>
             <div onClick={() => navigate(`/account/order/${5}`)}
